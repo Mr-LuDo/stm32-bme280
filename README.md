@@ -13,18 +13,21 @@ To get SPI working:<br>
 comment out the I2C line and uncomment the SPI line in bme280_support.c lines 157/158<br>
 set prescaler to 8 or higher, clock polarity to high, and phase to two-edge:<br>
 
-  hspi2.Instance = SPI2;<br>
-  hspi2.Init.Mode = SPI_MODE_MASTER;<br>
-  hspi2.Init.Direction = SPI_DIRECTION_2LINES;<br>
-  hspi2.Init.DataSize = SPI_DATASIZE_8BIT;<br>
-  hspi2.Init.CLKPolarity = SPI_POLARITY_HIGH;<br>
-  hspi2.Init.CLKPhase = SPI_PHASE_2EDGE;<br>
-  hspi2.Init.NSS = SPI_NSS_SOFT;<br>
-  hspi2.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_8;<br>
-  hspi2.Init.FirstBit = SPI_FIRSTBIT_MSB;<br>
-  hspi2.Init.TIMode = SPI_TIMODE_DISABLE;<br>
-  hspi2.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;<br>
-  hspi2.Init.CRCPolynomial = 10;<br>
+---
+>  hspi2.Instance = SPI2;<br>
+>  hspi2.Init.Mode = SPI_MODE_MASTER;<br>
+>  hspi2.Init.Direction = SPI_DIRECTION_2LINES;<br>
+>  hspi2.Init.DataSize = SPI_DATASIZE_8BIT;<br>
+>  hspi2.Init.CLKPolarity = SPI_POLARITY_HIGH;<br>
+>  hspi2.Init.CLKPhase = SPI_PHASE_2EDGE;<br>
+>  hspi2.Init.NSS = SPI_NSS_SOFT;<br>
+>  hspi2.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_8;<br>
+>  hspi2.Init.FirstBit = SPI_FIRSTBIT_MSB;<br>
+>  hspi2.Init.TIMode = SPI_TIMODE_DISABLE;<br>
+>  hspi2.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;<br>
+>  hspi2.Init.CRCPolynomial = 10;<br>
+ 
+ ---
  
   Basically we need to get the SPI clock speed under 10MHz (according to the data sheet, pg.36)<br>
   For for a 64mhz stm32f103 running APB1 peripheral bus clock at 32Mhz, use a prescaler of 4 to yield 8 Mb/s SPI clock speed. <br>
